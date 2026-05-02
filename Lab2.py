@@ -6,8 +6,8 @@
 
 import pandas as pd              # 处理表格数据
 import numpy as np               # 数值计算
-import matplotlib.pyplot as plt  # 基础画图
-import seaborn as sns            # 更高级的可视化
+import matplotlib.pyplot as plt  
+import seaborn as sns            
 
 
 # In[2]:
@@ -36,7 +36,7 @@ df = df[[
 ]]
 
 
-# In[17]:
+# In[5]:
 
 
 df = df[(df["year"] >= 2000) & (df["year"] <= 2024)]
@@ -75,7 +75,7 @@ for var in variables:
     plt.show()
 
 
-# In[18]:
+# In[8]:
 
 
 print("The situation of missing values：")
@@ -230,7 +230,7 @@ plt.ylabel("Energy per Capita")
 plt.show()
 
 
-# # GDP vs Energy per Capita（核心图🔥）
+# GDP vs Energy per Capita
 
 # In[15]:
 
@@ -254,14 +254,14 @@ plt.title("GDP vs Energy per Capita (Trend)")
 plt.show()
 
 
-# In[ ]:
+# In[17]:
 
 
 corr = df["gdp"].corr(df["energy_per_capita"])
 print("Correlation:", corr)
 
 
-# In[ ]:
+# In[18]:
 
 
 corr_matrix = df[[
@@ -273,7 +273,7 @@ corr_matrix = df[[
 print(corr_matrix)
 
 
-# In[ ]:
+# In[19]:
 
 
 plt.figure(figsize=(8,6))
@@ -290,7 +290,7 @@ plt.title("Correlation Heatmap (Bolivia)")
 plt.show()
 
 
-# In[ ]:
+# In[20]:
 
 
 get_ipython().system('jupyter nbconvert --to script Lab2.ipynb')
