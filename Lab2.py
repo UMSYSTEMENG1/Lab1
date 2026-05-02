@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
-import pandas as pd              # 处理表格数据
-import numpy as np               # 数值计算
+import pandas as pd              
+import numpy as np               
 import matplotlib.pyplot as plt  
 import seaborn as sns            
 
 
-# In[2]:
+# In[ ]:
 
 
 df = pd.read_csv("WorldEnergy.csv")
@@ -18,7 +18,7 @@ df = pd.read_csv("WorldEnergy.csv")
 df.head()
 
 
-# In[3]:
+# In[ ]:
 
 
 df = df[df["country"] == "Bolivia"]
@@ -26,7 +26,7 @@ df = df[df["country"] == "Bolivia"]
 df.head()
 
 
-# In[4]:
+# In[ ]:
 
 
 df = df[[
@@ -36,7 +36,7 @@ df = df[[
 ]]
 
 
-# In[5]:
+# In[ ]:
 
 
 df = df[(df["year"] >= 2000) & (df["year"] <= 2024)]
@@ -50,7 +50,7 @@ print("The earliest year:", df["year"].min())
 print("The maximum year:", df["year"].max())
 
 
-# In[6]:
+# In[ ]:
 
 
 df = df.sort_values("year")
@@ -58,7 +58,7 @@ df = df.sort_values("year")
 df.head()
 
 
-# In[7]:
+# In[ ]:
 
 
 variables = [
@@ -75,14 +75,14 @@ for var in variables:
     plt.show()
 
 
-# In[8]:
+# In[ ]:
 
 
 print("The situation of missing values：")
 print(df.isnull().sum())
 
 
-# In[9]:
+# In[ ]:
 
 
 df["gdp"] = df["gdp"].interpolate(method='linear')
@@ -92,7 +92,7 @@ mask = df["year"] >= 2020
 df.loc[mask, "gdp"] = df.loc[mask, "gdp"].interpolate(method="linear")
 
 
-# In[10]:
+# In[ ]:
 
 
 for i in range(1, len(df)):
@@ -123,14 +123,14 @@ for i in range(1, len(df)):
         )
 
 
-# In[11]:
+# In[ ]:
 
 
 print("Post-processing missing values：")
 print(df.isnull().sum())
 
 
-# In[12]:
+# In[ ]:
 
 
 # Population
@@ -187,7 +187,7 @@ plt.ylabel("Energy Efficiency")
 plt.show()
 
 
-# In[13]:
+# In[ ]:
 
 
 fig, axes = plt.subplots(2, 3, figsize=(12, 6))
@@ -220,7 +220,7 @@ plt.tight_layout()
 plt.show()
 
 
-# In[14]:
+# In[ ]:
 
 
 plt.scatter(df["population"], df["energy_per_capita"])
@@ -232,7 +232,7 @@ plt.show()
 
 # GDP vs Energy per Capita
 
-# In[15]:
+# In[ ]:
 
 
 plt.figure()
@@ -245,7 +245,7 @@ plt.ylabel("Energy per Capita")
 plt.show()
 
 
-# In[16]:
+# In[ ]:
 
 
 sns.regplot(x=df["gdp"], y=df["energy_per_capita"])
@@ -254,14 +254,14 @@ plt.title("GDP vs Energy per Capita (Trend)")
 plt.show()
 
 
-# In[17]:
+# In[ ]:
 
 
 corr = df["gdp"].corr(df["energy_per_capita"])
 print("Correlation:", corr)
 
 
-# In[18]:
+# In[ ]:
 
 
 corr_matrix = df[[
@@ -273,7 +273,7 @@ corr_matrix = df[[
 print(corr_matrix)
 
 
-# In[19]:
+# In[ ]:
 
 
 plt.figure(figsize=(8,6))
@@ -290,7 +290,7 @@ plt.title("Correlation Heatmap (Bolivia)")
 plt.show()
 
 
-# In[20]:
+# In[ ]:
 
 
 get_ipython().system('jupyter nbconvert --to script Lab2.ipynb')
