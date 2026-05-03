@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import pandas as pd              
@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns            
 
 
-# In[ ]:
+# In[2]:
 
 
 df = pd.read_csv("WorldEnergy.csv")
@@ -18,7 +18,7 @@ df = pd.read_csv("WorldEnergy.csv")
 df.head()
 
 
-# In[ ]:
+# In[3]:
 
 
 df = df[df["country"] == "Bolivia"]
@@ -26,7 +26,7 @@ df = df[df["country"] == "Bolivia"]
 df.head()
 
 
-# In[ ]:
+# In[4]:
 
 
 df = df[[
@@ -36,7 +36,7 @@ df = df[[
 ]]
 
 
-# In[ ]:
+# In[5]:
 
 
 df = df[(df["year"] >= 2000) & (df["year"] <= 2024)]
@@ -50,7 +50,7 @@ print("The earliest year:", df["year"].min())
 print("The maximum year:", df["year"].max())
 
 
-# In[ ]:
+# In[6]:
 
 
 df = df.sort_values("year")
@@ -58,7 +58,7 @@ df = df.sort_values("year")
 df.head()
 
 
-# In[ ]:
+# In[7]:
 
 
 variables = [
@@ -75,14 +75,14 @@ for var in variables:
     plt.show()
 
 
-# In[ ]:
+# In[8]:
 
 
 print("The situation of missing values：")
 print(df.isnull().sum())
 
 
-# In[ ]:
+# In[9]:
 
 
 df["gdp"] = df["gdp"].interpolate(method='linear')
@@ -92,7 +92,7 @@ mask = df["year"] >= 2020
 df.loc[mask, "gdp"] = df.loc[mask, "gdp"].interpolate(method="linear")
 
 
-# In[ ]:
+# In[10]:
 
 
 for i in range(1, len(df)):
@@ -123,14 +123,14 @@ for i in range(1, len(df)):
         )
 
 
-# In[ ]:
+# In[11]:
 
 
 print("Post-processing missing values：")
 print(df.isnull().sum())
 
 
-# In[ ]:
+# In[12]:
 
 
 # Population
