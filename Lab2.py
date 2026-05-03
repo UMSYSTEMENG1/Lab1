@@ -95,6 +95,9 @@ df.loc[mask, "gdp"] = df.loc[mask, "gdp"].interpolate(method="linear")
 # In[10]:
 
 
+avg_pct = df.loc[df["year"].between(2020, 2023), "energy_cons_change_pct"].mean()
+df.loc[df["year"] == 2024, "energy_cons_change_pct"] = avg_pct
+
 for i in range(1, len(df)):
 
     # energy_per_capita
@@ -111,7 +114,7 @@ for i in range(1, len(df)):
         df.loc[i, "energy_cons_change_twh"] = (
             df.loc[i-1, "energy_per_capita"]
             * df.loc[i-1, "population"]
-            * (df.loc[i, "energy_cons_change_pct"] / 100)
+            * (df.loc[i, "energy_cons_change_pct"] / 100/ 1e9 )
         )
 
     # energy_per_gdp
@@ -187,7 +190,7 @@ plt.ylabel("Energy Efficiency")
 plt.show()
 
 
-# In[ ]:
+# In[13]:
 
 
 fig, axes = plt.subplots(2, 3, figsize=(12, 6))
@@ -220,7 +223,7 @@ plt.tight_layout()
 plt.show()
 
 
-# In[ ]:
+# In[14]:
 
 
 plt.scatter(df["population"], df["energy_per_capita"])
@@ -232,7 +235,7 @@ plt.show()
 
 # GDP vs Energy per Capita
 
-# In[ ]:
+# In[15]:
 
 
 plt.figure()
@@ -245,7 +248,7 @@ plt.ylabel("Energy per Capita")
 plt.show()
 
 
-# In[ ]:
+# In[16]:
 
 
 sns.regplot(x=df["gdp"], y=df["energy_per_capita"])
@@ -254,14 +257,14 @@ plt.title("GDP vs Energy per Capita (Trend)")
 plt.show()
 
 
-# In[ ]:
+# In[17]:
 
 
 corr = df["gdp"].corr(df["energy_per_capita"])
 print("Correlation:", corr)
 
 
-# In[ ]:
+# In[18]:
 
 
 corr_matrix = df[[
@@ -273,7 +276,7 @@ corr_matrix = df[[
 print(corr_matrix)
 
 
-# In[ ]:
+# In[19]:
 
 
 plt.figure(figsize=(8,6))
@@ -290,7 +293,7 @@ plt.title("Correlation Heatmap (Bolivia)")
 plt.show()
 
 
-# In[ ]:
+# In[20]:
 
 
 get_ipython().system('jupyter nbconvert --to script Lab2.ipynb')
